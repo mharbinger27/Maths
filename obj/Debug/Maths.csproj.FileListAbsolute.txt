@@ -1,0 +1,7 @@
+C:\dev\Maths\Maths\bin\Debug\Maths.exe.config
+C:\dev\Maths\Maths\bin\Debug\Maths.exe
+C:\dev\Maths\Maths\bin\Debug\Maths.pdb
+C:\dev\Maths\Maths\obj\Debug\Maths.csprojAssemblyReference.cache
+C:\dev\Maths\Maths\obj\Debug\Maths.csproj.CoreCompileInputs.cache
+C:\dev\Maths\Maths\obj\Debug\Maths.exe
+C:\dev\Maths\Maths\obj\Debug\Maths.pdb
