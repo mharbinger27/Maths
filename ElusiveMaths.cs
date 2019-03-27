@@ -28,9 +28,66 @@ namespace Maths
             Console.WriteLine();
             Console.WriteLine($"Running for {seconds} seconds...");
 
+            Stopwatch timer = Stopwatch.StartNew();
+            int initialValue = 1;
+            int currentValue;
+            int sumOfNumbers = 0;
+            int currentTime = 0;
+
+            List<int> perfectNumbersFound = new List<int>();
+
+            do
+            {
+                initialValue += 1;
+                sumOfNumbers = 0;
+                currentValue = initialValue;
+
+                // Console.Write($"{currentValue}: ");
+                // Loop through increasing values
+                
+                for (int i = 1; i < currentValue; i++)
+                {
+                    if (currentValue % i == 0)
+                    {
+                        // Console.Write($"{i} ");
+                        sumOfNumbers += i;
+                    }
+                }
+
+                if (currentValue == sumOfNumbers)
+                {
+                    perfectNumbersFound.Add(currentValue);
+                    Console.Write("** PERFECT **");
+                }
+                // Console.WriteLine();
+
+
+                // For each value, find its divisors
+                // Add divisors
+                // Determine if equal to original value
+
+                if (((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds) > currentTime)
+                {
+                    currentTime++;
+                    Console.WriteLine(currentTime);
+                }
+            }
+            while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
+
+            timer.Stop();
+
             Console.WriteLine();
-            Console.WriteLine("Not yet implemented - sorry!");
-            return;
+            Console.WriteLine();
+
+            Console.WriteLine($"{seconds} seconds elapsed! Completed {initialValue} iterations.");
+            Console.Write("Perfect numbers found: ");
+
+            foreach(int perfectNumber in perfectNumbersFound)
+            {
+                Console.Write($"{perfectNumber} ");
+            }
+            Console.WriteLine();
+            Console.Read();
         }
 
         public static void CollatzConjecture(int seconds)
@@ -73,6 +130,7 @@ namespace Maths
 
             timer.Stop();
             Console.WriteLine($"{seconds} seconds elapsed! Completed {initialValue} iterations.");
+
             Console.Read();
         }
     }
