@@ -11,28 +11,39 @@ namespace Maths
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Elusive Maths!  Please select an option...");
-            Console.WriteLine("    a. Goldbach's Conjecture");
-            Console.WriteLine("    b. Perfect Numbers");
-            Console.WriteLine("    c. Collatz Conjecture");
+            Console.WriteLine("    a. Goldbach's Conjecture: \n        Any even number larger than 2 can be written as the sum of two prime numbers.");
+            Console.WriteLine("    b. Perfect Numbers: \n        A number whose divisors add up to that number.");
+            Console.WriteLine("    c. Collatz Conjecture: ");
+            Console.WriteLine("        The following sequence always reaches 1. Starting with any positive integer...");
+            Console.WriteLine("        If the number is even, divide by 2...");
+            Console.WriteLine("        If the number is odd, multiply by 3 and add 1.");
             Console.WriteLine();
             Console.Write("Your selection: ");
             char userSelection = Console.ReadKey().KeyChar;
             Console.WriteLine();
-            Console.WriteLine($"Selected {userSelection}.  How many seconds?");
-            Console.WriteLine();
-            Console.Write("Your time: ");
+            Console.Write($"Seconds to run: ");
             int userSeconds = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine();
-            Console.WriteLine($"Running {userSelection} for {userSeconds} seconds...");
-            Console.WriteLine();
+            Console.WriteLine($"Running program '{userSelection}' for {userSeconds} seconds...\n");
 
             string programToRun = userSelection.ToString();
             int secondsToRun = userSeconds;
 
             if (programToRun == "a")
             {
-                ElusiveMaths.CalculatePrimes(secondsToRun);
-                // ElusiveMaths.GoldbachsConjecture(secondsToRun);
+                if (secondsToRun > 60)
+                {
+                    ElusiveMaths.CalculatePrimes(20);
+                }
+                else if (secondsToRun < 3)
+                {
+                    ElusiveMaths.CalculatePrimes(secondsToRun);
+                }
+                else
+                {
+                    ElusiveMaths.CalculatePrimes(secondsToRun / 3);
+                }
+
+                ElusiveMaths.GoldbachsConjecture(secondsToRun);
             }
             else if (programToRun == "b")
             {
@@ -46,6 +57,9 @@ namespace Maths
             {
                 Console.WriteLine($"Whoops, turns out {programToRun} is not a valid choice...");
             }
+
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
 
             return;
         }

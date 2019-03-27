@@ -13,29 +13,54 @@ namespace Maths
 
         public static void GoldbachsConjecture(int seconds)
         {
-            Console.WriteLine("Goldbach's Conjecture:");
-            Console.WriteLine("Any even number larger than 2 can be written as the sum of two prime numbers.");
-            Console.WriteLine();
-            Console.WriteLine($"Running for {seconds} seconds...");
-            Console.WriteLine();
-
             Stopwatch timer = Stopwatch.StartNew();
 
             int initialValue = 0;
-
-            CalculatePrimes(seconds);
+            int limit = 0;
+            int firstDivisor = 0;
+            int secondDivisor = 0;
 
             do
             {
-                //initialValue += 2;
+                initialValue += 2;
+
+                limit = primeNumbers.Count;
+                for (int i = 0; i < limit; i++)
+                {
+                    if (primeNumbers[i] > initialValue)
+                    {
+                        limit = (i - 1);
+                        break;
+                    }
+                }
+
+                for (int i = 0; i <= limit; i++)
+                {
+                    //for (int j = 0; j <= limit; j++)
+                    for (int j = (limit - 1); j >= 0; j--)
+                    {
+                        if (primeNumbers[i] + primeNumbers[j] == initialValue)
+                        {
+                            firstDivisor = primeNumbers[i];
+                            secondDivisor = primeNumbers[j];
+                            break;
+                        }
+                    }
+                }
+
+                Console.WriteLine($"{initialValue} = {firstDivisor} + {secondDivisor}");
             }
             while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
+
+            Console.WriteLine($"\nFound {primeNumbers.Count} primes, and proved theorem for {initialValue / 2} iterations.");
 
             return;
         }
 
         public static void CalculatePrimes(int seconds)
         {
+            Console.WriteLine($"Calculating prime numbers for {seconds} seconds first...\n");
+
             int runningValue = 0;
             int sumOfDivisors = 0;
             int lastPrime = 0;
@@ -72,17 +97,10 @@ namespace Maths
             } while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
 
             timer.Stop();
-            Console.WriteLine($"Largest prime found: {lastPrime}");
-            Console.ReadKey();
         }
 
         public static void PerfectNumbers(int seconds)
         {
-            Console.WriteLine("Perfect Numbers:");
-            Console.WriteLine("A number whose divisors add up to that number.");
-            Console.WriteLine();
-            Console.WriteLine($"Running for {seconds} seconds...");
-
             Stopwatch timer = Stopwatch.StartNew();
             int initialValue = 1;
             int currentValue;
@@ -97,14 +115,10 @@ namespace Maths
                 sumOfNumbers = 0;
                 currentValue = initialValue;
 
-                // Console.Write($"{currentValue}: ");
-                // Loop through increasing values
-                
                 for (int i = 1; i < currentValue; i++)
                 {
                     if (currentValue % i == 0)
                     {
-                        // Console.Write($"{i} ");
                         sumOfNumbers += i;
                     }
                 }
@@ -112,48 +126,29 @@ namespace Maths
                 if (currentValue == sumOfNumbers)
                 {
                     perfectNumbersFound.Add(currentValue);
-                    Console.Write("** PERFECT **");
-                }
-                // Console.WriteLine();
-
-
-                // For each value, find its divisors
-                // Add divisors
-                // Determine if equal to original value
-
-                if (((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds) > currentTime)
-                {
-                    currentTime++;
-                    Console.WriteLine(currentTime);
                 }
             }
             while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
 
             timer.Stop();
 
-            Console.WriteLine();
-            Console.WriteLine();
+            Console.Write($"Completed {initialValue} iterations.  Perfect numbers found: ");
 
-            Console.WriteLine($"{seconds} seconds elapsed! Completed {initialValue} iterations.");
-            Console.Write("Perfect numbers found: ");
-
-            foreach(int perfectNumber in perfectNumbersFound)
+            for (int i = 0; i < perfectNumbersFound.Count; i++)
             {
-                Console.Write($"{perfectNumber} ");
+                if ((i + 1) == perfectNumbersFound.Count)
+                {
+                    Console.WriteLine($"{perfectNumbersFound[i]}.\n");
+                }
+                else
+                {
+                    Console.Write($"{perfectNumbersFound[i]}, ");
+                }
             }
-            Console.WriteLine();
-            Console.Read();
         }
 
         public static void CollatzConjecture(int seconds)
         {
-            Console.WriteLine("Collatz Conjecture:");
-            Console.WriteLine("The following sequence always reaches 1. Starting with any positive integer...");
-            Console.WriteLine("     If the number is even, divide by 2.");
-            Console.WriteLine("     If the number is odd, multiply by 3 and add 1.");
-            Console.WriteLine();
-            Console.WriteLine($"Running for {seconds} seconds...");
-
             Stopwatch timer = Stopwatch.StartNew();
             int initialValue = 1;
             int currentValue;
@@ -185,8 +180,6 @@ namespace Maths
 
             timer.Stop();
             Console.WriteLine($"{seconds} seconds elapsed! Completed {initialValue} iterations.");
-
-            Console.Read();
         }
     }
 }
