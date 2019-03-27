@@ -31,7 +31,8 @@ namespace Maths
 
             if (programToRun == "a")
             {
-                ElusiveMaths.GoldbachsConjecture(secondsToRun);
+                ElusiveMaths.CalculatePrimes(secondsToRun);
+                // ElusiveMaths.GoldbachsConjecture(secondsToRun);
             }
             else if (programToRun == "b")
             {

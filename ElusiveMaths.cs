@@ -9,16 +9,71 @@ namespace Maths
 {
     public static class ElusiveMaths
     {
+        public static List<int> primeNumbers;
+
         public static void GoldbachsConjecture(int seconds)
         {
             Console.WriteLine("Goldbach's Conjecture:");
             Console.WriteLine("Any even number larger than 2 can be written as the sum of two prime numbers.");
             Console.WriteLine();
             Console.WriteLine($"Running for {seconds} seconds...");
-
             Console.WriteLine();
-            Console.WriteLine("Not yet implemented - sorry!");
+
+            Stopwatch timer = Stopwatch.StartNew();
+
+            int initialValue = 0;
+
+            CalculatePrimes(seconds);
+
+            do
+            {
+                //initialValue += 2;
+            }
+            while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
+
             return;
+        }
+
+        public static void CalculatePrimes(int seconds)
+        {
+            int runningValue = 0;
+            int sumOfDivisors = 0;
+            int lastPrime = 0;
+
+            primeNumbers = new List<int>();
+
+            Stopwatch timer = Stopwatch.StartNew();
+            primeNumbers.Add(1);
+
+            do
+            {
+                runningValue++;
+
+                if (runningValue > 2 && (runningValue % 2 == 0))
+                {
+                    continue;
+                }
+
+                sumOfDivisors = 0;
+
+                for (int i = 1; i <= runningValue; i++)
+                {
+                    if (runningValue % i == 0)
+                    {
+                        sumOfDivisors++;
+                    }
+                }
+
+                if (sumOfDivisors == 2)
+                {
+                    primeNumbers.Add(runningValue);
+                    lastPrime = runningValue;
+                }
+            } while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
+
+            timer.Stop();
+            Console.WriteLine($"Largest prime found: {lastPrime}");
+            Console.ReadKey();
         }
 
         public static void PerfectNumbers(int seconds)
@@ -126,7 +181,7 @@ namespace Maths
 
                 Console.WriteLine("1");
             }
-            while (timer.Elapsed.Seconds < seconds);
+            while ((timer.Elapsed.Minutes * 60) + timer.Elapsed.Seconds < seconds);
 
             timer.Stop();
             Console.WriteLine($"{seconds} seconds elapsed! Completed {initialValue} iterations.");
