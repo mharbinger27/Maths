@@ -346,3 +346,9 @@ MigrationBackup/
 *.exe
 *.pdb
 obj/Debug/Maths.csproj.FileListAbsolute.txt
+bin/Debug/Maths.exe
+bin/Debug/Maths.pdb
+obj/Debug/Maths.csproj.CoreCompileInputs.cache
+obj/Debug/Maths.csproj.FileListAbsolute.txt
+obj/Debug/Maths.exe
+obj/Debug/Maths.pdb
